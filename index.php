@@ -1,39 +1,26 @@
-<?php
-
-require'post.php';
-if(isset($_POST['title'])){
-    $filename = UploadImage($_FILES['image']);
-    addPosts($_POST['title'], $_POST['content'], $filename);
-}
-?>
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="style/style.css">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
 <body>
-<fieldset>
-    <legend>Создайте свой пост!</legend>
-    <form id="form_data" method="post" enctype="multipart/form-data">
-        <input type="text" required name="title" placeholder="Введите заголовок"><br>
-        <input class="imginput" required type="file" name="image"><br>
-        <textarea name="content" required placeholder="Введите текст поста"></textarea><br>
-        <button type="submit" class="knopka">Отправить</button>
+    <form method="post" class="form" enctype="multipart/form-data">
+        <input type="text" name="text">
+        <button type="submit" name="btn"> Отправить</button>
     </form>
-</fieldset>
-<?php
-    $posts = getPost();
-    require_once "view/indexshow.php";
-    ?>
-<script>
-    if ( window.history.replaceState ) {
-        window.history.replaceState( null, null, window.location.href );
-    }
-</script>
+    <form name="form2" id="form2">
+        <?php
+        require_once 'send.php ';
+
+        $posts = getPost();
+        require_once "showposts.php";
+
+        ?>
+    </form>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+    <script src="ajax.js" ></script>
 </body>
 </html>
